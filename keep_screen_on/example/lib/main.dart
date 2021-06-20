@@ -15,13 +15,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  bool _isKeepScreenOn = false;
-  DateTime _changeAt;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  bool? _isKeepScreenOn;
+  DateTime? _changeAt;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +34,7 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   ListTile(
                     title: Text('Keep screen on'),
-                    subtitle: Text(_isKeepScreenOn.toString()),
+                    subtitle: (_isKeepScreenOn == null) ? Text('Unknown') : Text(_isKeepScreenOn.toString()),
                   ),
                   ListTile(
                     title: Text('Change date and time'),
@@ -55,7 +50,7 @@ class _MyAppState extends State<MyApp> {
               ButtonBar(
                 alignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton.icon(
+                  ElevatedButton.icon(
                     icon: Icon(Icons.arrow_upward),
                     label: Text('Turn on'),
                     onPressed: () {
@@ -69,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                     },
                   ),
 
-                  RaisedButton.icon(
+                  ElevatedButton.icon(
                     icon: Icon(Icons.arrow_downward),
                     label: Text('Turn off'),
                     onPressed: () {
@@ -93,7 +88,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class ElapsedTimeText extends StatefulWidget {
-  final DateTime startAt;
+  final DateTime? startAt;
 
   ElapsedTimeText(this.startAt);
 
@@ -103,8 +98,8 @@ class ElapsedTimeText extends StatefulWidget {
 
 class _ElapsedTimeTextState extends State<ElapsedTimeText> {
 
-  Timer _timer;
-  String _elapsedText;
+  Timer? _timer;
+  String _elapsedText = '';
 
   @override
   void initState() {
@@ -122,7 +117,7 @@ class _ElapsedTimeTextState extends State<ElapsedTimeText> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_elapsedText ?? '');
+    return Text(_elapsedText);
   }
 
   void updateElapsed(Timer _timer) {
@@ -130,7 +125,7 @@ class _ElapsedTimeTextState extends State<ElapsedTimeText> {
       return;
     }
 
-    final elapsed = DateTime.now().difference(widget.startAt);
+    final elapsed = DateTime.now().difference(widget.startAt!);
 
     setState(() {
       _elapsedText = elapsed.inHours.toString()

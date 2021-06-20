@@ -10,14 +10,14 @@ class KeepScreenOn {
   ///
   /// Returns true if automatic screen off is disabled.
   ///
-  static Future<bool> get isOn {
+  static Future<bool?> get isOn {
     return KeepScreenOnPlatform.instance.isOn;
   }
 
   ///
   /// Returns true if automatic screen off is enabled.
   ///
-  static Future<bool> get isOff {
+  static Future<bool?> get isOff {
     return KeepScreenOnPlatform.instance.isOff;
   }
 

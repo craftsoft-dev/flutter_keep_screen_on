@@ -8,7 +8,7 @@
 
 ```yaml
 dependencies:
-  keep_screen_on: ^1.0.0
+  keep_screen_on: ^2.0.0
 ```
 
 ## 使い方
@@ -38,14 +38,14 @@ KeepScreenOn.turnOn(false);
 ```
 
 現在、画面が消灯しないようになっているかはisOnプロパティまたはisOffプロパティで確認できます。  
-isOnおよびisOffはFuture<bool>を返すため"await"を利用するか"then"メソッドで値を受け取る必要があります。
+isOnおよびisOffはFuture<bool?>を返すため"await"を利用するか"then"メソッドで値を受け取る必要があります。
 
 ```dart
-Future<bool> getScreenKeepOn() async {
+Future<bool?> getScreenKeepOn() async {
   return await KeepScreenOn.isOn; 
 }
 
-Future<bool> getScreenKeepOff() async {
+Future<bool?> getScreenKeepOff() async {
   return await KeepScreenOn.isOff;
 }
 ```

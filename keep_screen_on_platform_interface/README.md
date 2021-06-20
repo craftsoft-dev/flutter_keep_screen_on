@@ -1,4 +1,4 @@
-# location_platform_interface
+# keep_screen_on_platform_interface
 
 A common platform interface for the [`keep_screen_on`][1] plugin.
 
