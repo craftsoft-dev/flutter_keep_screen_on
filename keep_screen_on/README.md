@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  keep_screen_on: ^1.0.0
+  keep_screen_on: ^2.0.0
 ```
 
 ## Usage
@@ -38,14 +38,14 @@ KeepScreenOn.turnOn(false);
 ```
 
 You can check if the screen is not turned off by checking the isOn property or isOff property.  
-Since isOn and isOff return Future <bool>, you need to use "await" or receive the value with the "then" method.
+Since isOn and isOff return Future <bool?>, you need to use "await" or receive the value with the "then" method.
 
 ```dart
-Future<bool> getScreenKeepOn() async {
+Future<bool?> getScreenKeepOn() async {
   return await KeepScreenOn.isOn; 
 }
 
-Future<bool> getScreenKeepOff() async {
+Future<bool?> getScreenKeepOff() async {
   return await KeepScreenOn.isOff;
 }
 ```
