@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  keep_screen_on: ^1.0.0
+  keep_screen_on: ^2.1.0
 ```
 
 ## Usage
