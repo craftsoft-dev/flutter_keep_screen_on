@@ -13,10 +13,34 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   bool? _isKeepScreenOn;
   DateTime? _changeAt;
+  DateTime? _pausedAt;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      setState(() {
+        _pausedAt = DateTime.now();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +67,10 @@ class _MyAppState extends State<MyApp> {
                   ListTile(
                     title: Text('Elapsed time'),
                     subtitle: ElapsedTimeText(_changeAt),
+                  ),
+                  ListTile(
+                    title: Text('Paused at(The app moves to the background)'),
+                    subtitle: Text(_pausedAt.toString()),
                   )
                 ],
               ),
@@ -99,7 +127,7 @@ class ElapsedTimeText extends StatefulWidget {
 class _ElapsedTimeTextState extends State<ElapsedTimeText> {
 
   Timer? _timer;
-  String _elapsedText = '';
+  String _elapsedText = 'null';
 
   @override
   void initState() {
