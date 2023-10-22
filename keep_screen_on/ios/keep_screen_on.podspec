@@ -1,10 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint keep_screen_on.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
   s.name             = 'keep_screen_on'
-  s.version          = '1.0.0'
+  s.version          = '3.0.0'
   s.summary          = 'Keep screen on.'
   s.description      = <<-DESC
 This plugin disables automatic screen off and prevents the screen from turning off.
@@ -13,11 +12,10 @@ This plugin disables automatic screen off and prevents the screen from turning o
   s.license          = { :type => 'MIT', :file => '../LICENSE' }
   s.author           = { 'Craftsoft LLC' => 'inquiry@craftsoft.jp' }
   s.source           = { :path => '.' }
+  s.documentation_url = 'https://pub.dev/packages/keep_screen_on'
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
-
-  # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
+  s.platform = :ios, '11.0'
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

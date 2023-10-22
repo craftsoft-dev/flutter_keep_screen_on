@@ -8,7 +8,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  keep_screen_on: ^2.1.0
+  keep_screen_on: ^3.0.0
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Alternatively, you can do the same by specifying false as the argument to the tu
 KeepScreenOn.turnOff();
 
 // or...
-KeepScreenOn.turnOn(false);
+KeepScreenOn.turnOn(on: false);
 ```
 
 You can check if the screen is not turned off by checking the isOn property or isOff property.  
@@ -50,9 +50,48 @@ Future<bool?> getScreenKeepOff() async {
 }
 ```
 
+### Android only.
+
+The following functions are available on Android.
+Nothing happens even if you run it on an OS other than Android.
+
+You can specify the withAllowLockWhileScreenOn argument to the turnOn and turnOff methods.  
+When ```withAllowLockWhileScreenOn: true``` is specified, [FLAG_ALLOW_LOCK_WHILE_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_ALLOW_LOCK_WHILE_SCREEN_ON) is also specified in addition to [FLAG_KEEP_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_KEEP_SCREEN_ON).
+
+```dart
+KeepScreenOn.turnOn(withAllowLockWhileScreenOn: true);
+
+KeepScreenOn.turnOff(withAllowLockWhileScreenOn: true);
+```
+
+If you want to switch only [FLAG_ALLOW_LOCK_WHILE_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_ALLOW_LOCK_WHILE_SCREEN_ON), you can do so by calling the method below.
+
+```dart
+KeepScreenOn.addAllowLockWhileScreenOn();
+
+KeepScreenOn.clearAllowLockWhileScreenOn();
+```
+
+You can check the assignment status of [FLAG_ALLOW_LOCK_WHILE_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_ALLOW_LOCK_WHILE_SCREEN_ON) from the isAllowLockWhileScreenOn property.
+
+```dart
+KeepScreenOn.isAllowLockWhileScreenOn
+```
+
+Each call returns the following values on non-Android OS:
+
+| Method/Property             | Returns |
+|-----------------------------|---------|
+| addAllowLockWhileScreenOn   | false   |
+| clearAllowLockWhileScreenOn | false   |
+| isAllowLockWhileScreenOn    | null    |
+
+
+
+
 ## Attention
 
-When you call the turnOn method with no arguments or with true,  
+When you call the turnOn method with no arguments or with ```on: true```,  
 Android sets ```android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON``` for the activity window as an internal action.  
 iOS sets ```UIApplication.shared.isIdleTimerDisabled``` to true.
 
@@ -61,7 +100,7 @@ For this reason, be sure to use the dispose method of StatefulWidget etc.
 KeepScreenOn.turnOff();
 ```
 Should be called.
-If you forget to call ```turnOff``` (or ``` turnOn(false) ```), the screen will not turn off automatically while the app is running.
+If you forget to call ```turnOff``` (or ``` turnOn(on: false) ```), the screen will not turn off automatically while the app is running.
 
 For Android, when the activity is switched, the automatic screen off will follow the activity to which it was switched.  
 For iOS, automatic screen off is restored when you move to the background.

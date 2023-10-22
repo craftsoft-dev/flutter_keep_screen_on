@@ -33,9 +33,9 @@ public class SwiftKeepScreenOnPlugin: NSObject, FlutterPlugin {
             return
         }
         
-        let turnOn: Bool = arguments["turnOn"] as? Bool ?? false
+        let on: Bool = arguments["on"] as? Bool ?? false
         
-        UIApplication.shared.isIdleTimerDisabled = turnOn
+        UIApplication.shared.isIdleTimerDisabled = on
         
         result(true)
     }
