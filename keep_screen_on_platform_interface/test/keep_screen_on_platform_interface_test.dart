@@ -21,7 +21,7 @@ void main() {
     test('Cannot be implemented with `implements`', () {
       expect(() {
         KeepScreenOnPlatform.instance = ImplementsKeepScreenOnPlatform();
-      }, throwsNoSuchMethodError);
+      }, throwsAssertionError);
     });
 
     test('Can be extended', () {
