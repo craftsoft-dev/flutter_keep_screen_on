@@ -1,8 +1,8 @@
 package dev.craftsoft.keepscreenon
 
 import android.app.Activity
+import android.util.Log
 import android.view.WindowManager
-import androidx.annotation.NonNull;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -11,7 +11,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** KeepScreenOnPlugin */
 public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -23,23 +22,27 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
 
   private var activity: Activity? = null
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, CHANNEL_NAME)
     channel.setMethodCallHandler(this);
   }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+  override fun onMethodCall(call: MethodCall, result: Result) {
 
     when (call.method) {
       "isOn"   -> onMethodCallIsOn(call, result)
       "turnOn" -> onMethodCallTurnOn(call, result)
+
+      "isAllowLockWhileScreenOn" -> onMethodCallIsAllowLockWhileScreenOn(call, result)
+      "addAllowLockWhileScreenOn" -> onMethodCallAddAllowLockWhileScreenOn(call, result)
+
       else     -> {
         result.notImplemented();
       }
     }
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
 
@@ -65,7 +68,7 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
   //
   // Implement a private method called from onMethodCall
   //
-  private fun onMethodCallIsOn(@NonNull @Suppress("UNUSED_PARAMETER") call: MethodCall, @NonNull result: Result) {
+  private fun onMethodCallIsOn(@Suppress("UNUSED_PARAMETER") call: MethodCall, result: Result) {
     val window = activity?.window
 
     if (window == null) {
@@ -77,7 +80,7 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
     result.success(hasKeepScreenOn);
   }
 
-  private fun onMethodCallTurnOn(@NonNull call: MethodCall, @NonNull result: Result) {
+  private fun onMethodCallTurnOn(call: MethodCall, result: Result) {
     val window = activity?.window
 
     if (window == null) {
@@ -85,16 +88,57 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
       return
     }
 
-    val turnOn = call.argument<Boolean>("turnOn");
-    if (turnOn == true) {
-      window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    val on = call.argument<Boolean>("on");
+    val withAllowLockWhileScreenOn = call.argument<Boolean>("withAllowLockWhileScreenOn")
+
+    val flag = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+            if(withAllowLockWhileScreenOn == true)
+              WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+            else
+              0
+
+    Log.d(TAG, "flag=$flag")
+
+    if (on == true) {
+      window.addFlags(flag)
     } else {
-      window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+      window.clearFlags(flag);
     }
 
     result.success(true);
   }
 
+  private fun onMethodCallIsAllowLockWhileScreenOn(call: MethodCall, result: Result) {
+    val window = activity?.window
+
+    if (window == null) {
+      result.error("not-found-activity", "Not found 'activity'.", null)
+      return
+    }
+
+    val hasAllowLockWhileScreenOn = (window.attributes.flags and WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON) != 0;
+    result.success(hasAllowLockWhileScreenOn);
+  }
+
+  private fun onMethodCallAddAllowLockWhileScreenOn(call: MethodCall, result: Result) {
+    val window = activity?.window
+
+    if (window == null) {
+      result.error("not-found-activity", "Not found 'activity'.", null)
+      return
+    }
+
+    val on = call.argument<Boolean>("on");
+    val flag = WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+
+    if (on == true) {
+      window.addFlags(flag)
+    } else {
+      window.clearFlags(flag);
+    }
+
+    result.success(true);
+  }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
   // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
@@ -109,8 +153,9 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
     const val TAG = "KeepScreenOnPlugin";
     const val CHANNEL_NAME = "dev.craftsoft/keep_screen_on";
 
+    @Suppress("DEPRECATION")
     @JvmStatic
-    fun registerWith(registrar: Registrar) {
+    fun registerWith(registrar: io.flutter.plugin.common.PluginRegistry.Registrar) {
       val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
       channel.setMethodCallHandler(KeepScreenOnPlugin())
     }

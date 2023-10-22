@@ -38,23 +38,62 @@ class MethodChannelKeepScreenOn extends KeepScreenOnPlatform {
     return (result is bool) ? !result : result;
   }
 
-  ///
   /// Disables automatic screen off.
   /// If you specify false for [on], the opposite operation is performed.
   ///
+  /// If [withAllowLockWhileScreenOn] is set to true,
+  /// the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag will also be assigned at
+  /// the same time (Android only).
   @override
-  Future<bool> turnOn([bool on = true]) async {
-    final result = await _methodChannel.invokeMethod<bool>('turnOn', {'turnOn': on});
-    return result ?? false;
+  Future<bool> turnOn({ bool on = true, bool withAllowLockWhileScreenOn = false }) {
+    return _methodChannel.invokeMethod<bool>(
+      'turnOn',
+      {
+        'on': on,
+        'withAllowLockWhileScreenOn': withAllowLockWhileScreenOn,
+      },
+    ).then((result) => result ?? false);
   }
 
-  ///
   /// Enables automatic screen off.
   /// (Reset to default.)
   /// It is recommended to call it with the dispose method of StatefulWidget.
   ///
+  /// If [withAllowLockWhileScreenOn] is set to true,
+  /// the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag is also cleared at
+  /// the same time (Android only).
   @override
-  Future<bool> turnOff() {
-    return turnOn(false);
+  Future<bool> turnOff({ bool withAllowLockWhileScreenOn = false }) {
+    return turnOn(
+      on: false,
+      withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
+    );
+  }
+
+  /// Returns true if the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag is assigned (Android only).
+  Future<bool?> get isAllowLockWhileScreenOn {
+    if (!Platform.isAndroid) {
+      return Future.value();
+    }
+
+    return _methodChannel.invokeMethod<bool>('isAllowLockWhileScreenOn');
+  }
+
+  /// Assign the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag to the window (Android only).
+  /// If you specify false for [on], the opposite operation is performed.
+  Future<bool> addAllowLockWhileScreenOn({ bool on = true }) {
+    if (!Platform.isAndroid) {
+      return Future.value(false);
+    }
+
+    return _methodChannel.invokeMethod<bool>(
+      'addAllowLockWhileScreenOn',
+      { 'on': on },
+    ).then((result) => result ?? false);
+  }
+
+  /// Clears the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag from the window (Android only).
+  Future<bool> clearAllowLockWhileScreenOn() {
+    return addAllowLockWhileScreenOn(on: false);
   }
 }

@@ -32,14 +32,50 @@ void main() {
     expect(await KeepScreenOn.turnOn(), true);
   });
 
-  test('turnOn(false)', () async {
-    when(KeepScreenOn.turnOn(false)).thenAnswer((value) => Future.value(true));
-    expect(await KeepScreenOn.turnOn(false), true);
+  test('turnOn(on: false)', () async {
+    when(KeepScreenOn.turnOn(on: false)).thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.turnOn(on: false), true);
+  });
+
+  test('turnOn(on: true, withAllowLockWhileScreenOn: true)', () async {
+    when(KeepScreenOn.turnOn(on: true, withAllowLockWhileScreenOn: true))
+        .thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.turnOn(on: false), true);
   });
 
   test('turnOff', () async {
     when(KeepScreenOn.turnOff()).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.turnOff(), true);
+  });
+
+  test('turnOff(withAllowLockWhileScreenOn: true)', () async {
+    when(KeepScreenOn.turnOff(withAllowLockWhileScreenOn: true))
+        .thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.turnOff(), true);
+  });
+
+  test('isAllowLockWhileScreenOn', () async {
+    when(KeepScreenOn.isAllowLockWhileScreenOn)
+        .thenAnswer((realInvocation) => Future.value(true));
+    expect(await KeepScreenOn.isAllowLockWhileScreenOn, true);
+  });
+
+  test('addAllowLockWhileScreenOn', () async {
+    when(KeepScreenOn.addAllowLockWhileScreenOn())
+        .thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.addAllowLockWhileScreenOn(), true);
+  });
+
+  test('addAllowLockWhileScreenOn(on: false)', () async {
+    when(KeepScreenOn.addAllowLockWhileScreenOn(on: false))
+        .thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.addAllowLockWhileScreenOn(on :false), true);
+  });
+
+  test('clearAllowLockWhileScreenOn', () async {
+    when(KeepScreenOn.clearAllowLockWhileScreenOn())
+        .thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.clearAllowLockWhileScreenOn(), true);
   });
 }
 
