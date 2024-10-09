@@ -1,3 +1,7 @@
+## 3.1.0
+
+- Delete references to Android v1 embedding, which the Flutter team intends to remove from the engine.
+
 ## 3.0.0
 
 - **Breaking change**. Changed arguments for turnOn methods from positional parameters to named parameters.(Changed ```turnOn(false)``` to ```turnOn(on: false)```.)
