@@ -97,8 +97,6 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
             else
               0
 
-    Log.d(TAG, "flag=$flag")
-
     if (on == true) {
       window.addFlags(flag)
     } else {
@@ -140,24 +138,8 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
     result.success(true);
   }
 
-  // This static function is optional and equivalent to onAttachedToEngine. It supports the old
-  // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
-  // plugin registration via this function while apps migrate to use the new Android APIs
-  // post-flutter-1.12 via https://flutter.dev/go/android-project-migration.
-  //
-  // It is encouraged to share logic between onAttachedToEngine and registerWith to keep
-  // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
-  // depending on the user's project. onAttachedToEngine or registerWith must both be defined
-  // in the same class.
   companion object {
     const val TAG = "KeepScreenOnPlugin";
     const val CHANNEL_NAME = "dev.craftsoft/keep_screen_on";
-
-    @Suppress("DEPRECATION")
-    @JvmStatic
-    fun registerWith(registrar: io.flutter.plugin.common.PluginRegistry.Registrar) {
-      val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
-      channel.setMethodCallHandler(KeepScreenOnPlugin())
-    }
   }
 }

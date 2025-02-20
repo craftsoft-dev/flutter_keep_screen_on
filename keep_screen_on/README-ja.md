@@ -8,7 +8,7 @@
 
 ```yaml
 dependencies:
-  keep_screen_on: ^3.0.0
+  keep_screen_on: ^4.0.0
 ```
 
 ## 使い方
