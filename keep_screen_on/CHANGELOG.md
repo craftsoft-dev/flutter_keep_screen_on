@@ -1,6 +1,6 @@
-## 3.1.0
+## 4.0.0
 
-- Delete references to Android v1 embedding, which the Flutter team intends to remove from the engine.
+- **Breaking change**. (Android only) Deleted references to Android v1 embedding.
 
 ## 3.0.0
 

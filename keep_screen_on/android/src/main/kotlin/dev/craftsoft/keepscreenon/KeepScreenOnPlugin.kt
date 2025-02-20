@@ -97,8 +97,6 @@ public class KeepScreenOnPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
             else
               0
 
-    Log.d(TAG, "flag=$flag")
-
     if (on == true) {
       window.addFlags(flag)
     } else {
