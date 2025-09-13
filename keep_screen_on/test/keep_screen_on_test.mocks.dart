@@ -30,22 +30,28 @@ class MockKeepScreenOnPlatformMockMixin extends _i1.Mock
   }
 
   @override
-  _i3.Future<bool?> get isOn => (super.noSuchMethod(
-        Invocation.getter(#isOn),
-        returnValue: _i3.Future<bool?>.value(),
-      ) as _i3.Future<bool?>);
+  _i3.Future<bool?> get isOn =>
+      (super.noSuchMethod(
+            Invocation.getter(#isOn),
+            returnValue: _i3.Future<bool?>.value(),
+          )
+          as _i3.Future<bool?>);
 
   @override
-  _i3.Future<bool?> get isOff => (super.noSuchMethod(
-        Invocation.getter(#isOff),
-        returnValue: _i3.Future<bool?>.value(),
-      ) as _i3.Future<bool?>);
+  _i3.Future<bool?> get isOff =>
+      (super.noSuchMethod(
+            Invocation.getter(#isOff),
+            returnValue: _i3.Future<bool?>.value(),
+          )
+          as _i3.Future<bool?>);
 
   @override
-  _i3.Future<bool?> get isAllowLockWhileScreenOn => (super.noSuchMethod(
-        Invocation.getter(#isAllowLockWhileScreenOn),
-        returnValue: _i3.Future<bool?>.value(),
-      ) as _i3.Future<bool?>);
+  _i3.Future<bool?> get isAllowLockWhileScreenOn =>
+      (super.noSuchMethod(
+            Invocation.getter(#isAllowLockWhileScreenOn),
+            returnValue: _i3.Future<bool?>.value(),
+          )
+          as _i3.Future<bool?>);
 
   @override
   _i3.Future<bool> turnOn({
@@ -53,45 +59,37 @@ class MockKeepScreenOnPlatformMockMixin extends _i1.Mock
     bool? withAllowLockWhileScreenOn = false,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #turnOn,
-          [],
-          {
-            #on: on,
-            #withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
-          },
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+            Invocation.method(#turnOn, [], {
+              #on: on,
+              #withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
+            }),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> turnOff({bool? withAllowLockWhileScreenOn = false}) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #turnOff,
-          [],
-          {#withAllowLockWhileScreenOn: withAllowLockWhileScreenOn},
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+            Invocation.method(#turnOff, [], {
+              #withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
+            }),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> addAllowLockWhileScreenOn({bool? on = true}) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #addAllowLockWhileScreenOn,
-          [],
-          {#on: on},
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+            Invocation.method(#addAllowLockWhileScreenOn, [], {#on: on}),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> clearAllowLockWhileScreenOn() => (super.noSuchMethod(
-        Invocation.method(
-          #clearAllowLockWhileScreenOn,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+  _i3.Future<bool> clearAllowLockWhileScreenOn() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearAllowLockWhileScreenOn, []),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 }

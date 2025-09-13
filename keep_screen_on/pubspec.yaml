@@ -1,10 +1,10 @@
 name: keep_screen_on
 description: This plugin disables automatic screen off and prevents the screen from turning off.
-version: 4.0.0
+version: 5.0.0
 homepage: https://github.com/craftsoft-dev/flutter_keep_screen_on
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ^3.9.2
   flutter: ">=3.13.0"
 
 dependencies:

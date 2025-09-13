@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:keep_screen_on_platform_interface/keep_screen_on_platform_interface.dart';
@@ -27,7 +26,10 @@ class KeepScreenOn {
   /// If [withAllowLockWhileScreenOn] is set to true,
   /// the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag will also be assigned at
   /// the same time (Android only).
-  static Future<bool> turnOn({ bool on = true, bool withAllowLockWhileScreenOn = false }) {
+  static Future<bool> turnOn({
+    bool on = true,
+    bool withAllowLockWhileScreenOn = false,
+  }) {
     return KeepScreenOnPlatform.instance.turnOn(
       on: on,
       withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
@@ -41,7 +43,7 @@ class KeepScreenOn {
   /// If [withAllowLockWhileScreenOn] is set to true,
   /// the FLAG_ALLOW_LOCK_WHILE_SCREEN_ON flag is also cleared at
   /// the same time (Android only).
-  static Future<bool> turnOff({ bool withAllowLockWhileScreenOn = false }) {
+  static Future<bool> turnOff({bool withAllowLockWhileScreenOn = false}) {
     return KeepScreenOnPlatform.instance.turnOff(
       withAllowLockWhileScreenOn: withAllowLockWhileScreenOn,
     );

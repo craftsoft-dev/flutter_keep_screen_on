@@ -1,4 +1,3 @@
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:keep_screen_on/keep_screen_on.dart';
 import 'package:mockito/annotations.dart';
@@ -33,13 +32,16 @@ void main() {
   });
 
   test('turnOn(on: false)', () async {
-    when(KeepScreenOn.turnOn(on: false)).thenAnswer((value) => Future.value(true));
+    when(
+      KeepScreenOn.turnOn(on: false),
+    ).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.turnOn(on: false), true);
   });
 
   test('turnOn(on: true, withAllowLockWhileScreenOn: true)', () async {
-    when(KeepScreenOn.turnOn(on: true, withAllowLockWhileScreenOn: true))
-        .thenAnswer((value) => Future.value(true));
+    when(
+      KeepScreenOn.turnOn(on: true, withAllowLockWhileScreenOn: true),
+    ).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.turnOn(on: false), true);
   });
 
@@ -49,35 +51,40 @@ void main() {
   });
 
   test('turnOff(withAllowLockWhileScreenOn: true)', () async {
-    when(KeepScreenOn.turnOff(withAllowLockWhileScreenOn: true))
-        .thenAnswer((value) => Future.value(true));
+    when(
+      KeepScreenOn.turnOff(withAllowLockWhileScreenOn: true),
+    ).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.turnOff(), true);
   });
 
   test('isAllowLockWhileScreenOn', () async {
-    when(KeepScreenOn.isAllowLockWhileScreenOn)
-        .thenAnswer((realInvocation) => Future.value(true));
+    when(
+      KeepScreenOn.isAllowLockWhileScreenOn,
+    ).thenAnswer((realInvocation) => Future.value(true));
     expect(await KeepScreenOn.isAllowLockWhileScreenOn, true);
   });
 
   test('addAllowLockWhileScreenOn', () async {
-    when(KeepScreenOn.addAllowLockWhileScreenOn())
-        .thenAnswer((value) => Future.value(true));
+    when(
+      KeepScreenOn.addAllowLockWhileScreenOn(),
+    ).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.addAllowLockWhileScreenOn(), true);
   });
 
   test('addAllowLockWhileScreenOn(on: false)', () async {
-    when(KeepScreenOn.addAllowLockWhileScreenOn(on: false))
-        .thenAnswer((value) => Future.value(true));
-    expect(await KeepScreenOn.addAllowLockWhileScreenOn(on :false), true);
+    when(
+      KeepScreenOn.addAllowLockWhileScreenOn(on: false),
+    ).thenAnswer((value) => Future.value(true));
+    expect(await KeepScreenOn.addAllowLockWhileScreenOn(on: false), true);
   });
 
   test('clearAllowLockWhileScreenOn', () async {
-    when(KeepScreenOn.clearAllowLockWhileScreenOn())
-        .thenAnswer((value) => Future.value(true));
+    when(
+      KeepScreenOn.clearAllowLockWhileScreenOn(),
+    ).thenAnswer((value) => Future.value(true));
     expect(await KeepScreenOn.clearAllowLockWhileScreenOn(), true);
   });
 }
 
 class KeepScreenOnPlatformMockMixin extends KeepScreenOnPlatform
-  with MockPlatformInterfaceMixin {}
+    with MockPlatformInterfaceMixin {}
