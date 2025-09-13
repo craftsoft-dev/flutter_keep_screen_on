@@ -1,3 +1,8 @@
+## 5.0.0
+
+- **Breaking change**. (Android only) Changed "compileSdk" in the build.gradle file from 33 to flutter.compileSdkVersion. 
+- **Breaking change**. (Android only) Changed the "sourceCompatibility", "targetCompatibility", and "jvmTarget" settings in the build.gradle file to 11. 
+
 ## 4.0.0
 
 - **Breaking change**. (Android only) Deleted references to Android v1 embedding.
