@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftKeepScreenOnPlugin: NSObject, FlutterPlugin {
+public class KeepScreenOnPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "dev.craftsoft/keep_screen_on", binaryMessenger: registrar.messenger())
-        let instance = SwiftKeepScreenOnPlugin()
+        let instance = KeepScreenOnPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
