@@ -1,3 +1,9 @@
+## 6.0.0
+
+- **Breaking change**. Changed the minimum version of Flutter to 3.41.0.
+- (iOS only) Added Swift Package Manager support.
+- (Android only) Update Java compatibility version to 17.
+
 ## 5.0.0
 
 - **Breaking change**. (Android only) Changed "compileSdk" in the build.gradle file from 33 to flutter.compileSdkVersion. 

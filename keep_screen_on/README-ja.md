@@ -8,7 +8,7 @@
 
 ```yaml
 dependencies:
-  keep_screen_on: ^5.0.0
+  keep_screen_on: ^6.0.0
 ```
 
 ## 使い方
@@ -26,7 +26,7 @@ import 'package:keep_screen_on/keep_screen_on.dart';
 KeepScreenOn.turnOn();
 ```
 
-画面を消灯するように元に戻すには、KeepScreenOnクラスのturnOffメソッドを呼び出します。  
+画面を消灯するように元に戻すには、KeepScreenOnクラスのturnOffメソッドを呼び出します。\
 または、turnOnメソッドにfalseを渡すことで同じ動作をします。
 
 ```dart
@@ -37,7 +37,7 @@ KeepScreenOn.turnOff();
 KeepScreenOn.turnOn(on: false);
 ```
 
-現在、画面が消灯しないようになっているかはisOnプロパティまたはisOffプロパティで確認できます。  
+現在、画面が消灯しないようになっているかはisOnプロパティまたはisOffプロパティで確認できます。\
 isOnおよびisOffはFuture<bool?>を返すため"await"を利用するか"then"メソッドで値を受け取る必要があります。
 
 ```dart
@@ -52,10 +52,10 @@ Future<bool?> getScreenKeepOff() async {
 
 ### Androidのみの機能
 
-Androidでは以下の機能を利用できます。  
+Androidでは以下の機能を利用できます。\
 Android以外のOSでは実行しても何もおきません。
 
-turnOn および turnOff メソッドに withAllowLockWhileScreenOn 引数を指定できます。  
+turnOn および turnOff メソッドに withAllowLockWhileScreenOn 引数を指定できます。\
 ```withAllowLockWhileScreenOn: true``` とした場合[FLAG_ALLOW_LOCK_WHILE_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams#FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)を一緒に指定します。
 
 ```dart
@@ -90,7 +90,7 @@ KeepScreenOn.isAllowLockWhileScreenOn
 ## 注意
 
 turnOnメソッドを引数無しまたは```on: true```を指定して呼び出すと、
-内部動作としてAndroidはアクティビティのウィドウに対して android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON を設定します。  
+内部動作としてAndroidはアクティビティのウィドウに対して android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON を設定します。\
 iOSは UIApplication.shared.isIdleTimerDisabled を true に設定します。
 
 このため、StatefulWidgetのdisposeメソッドなどで必ず
@@ -100,5 +100,5 @@ KeepScreenOn.turnOff();
 を呼び出すようにする必要があります。
 ```turnOff```(または```turnOn(on: false)```)の呼び出しを忘れるとアプリ実行中は画面が自動消灯できなくなります。
 
-Androidの場合、アクティビティが切り替わると自動画面オフは切り替わった先のアクティビティに従います。  
+Androidの場合、アクティビティが切り替わると自動画面オフは切り替わった先のアクティビティに従います。\
 iOSの場合、バックグラウンドに移動すると自動画面オフは元に戻ります。
