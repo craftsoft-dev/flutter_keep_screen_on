@@ -1,3 +1,8 @@
+## 7.0.0
+
+- Migrated to Built-in Kotlin to support AGP 9.
+- Updated minimum supported SDK version to Flutter 3.44/Dart 3.12.
+
 ## 6.0.0
 
 - **Breaking change**. Changed the minimum version of Flutter to 3.41.0.
@@ -6,8 +11,8 @@
 
 ## 5.0.0
 
-- **Breaking change**. (Android only) Changed "compileSdk" in the build.gradle file from 33 to flutter.compileSdkVersion. 
-- **Breaking change**. (Android only) Changed the "sourceCompatibility", "targetCompatibility", and "jvmTarget" settings in the build.gradle file to 11. 
+- **Breaking change**. (Android only) Changed "compileSdk" in the build.gradle file from 33 to flutter.compileSdkVersion.
+- **Breaking change**. (Android only) Changed the "sourceCompatibility", "targetCompatibility", and "jvmTarget" settings in the build.gradle file to 11.
 
 ## 4.0.0
 
