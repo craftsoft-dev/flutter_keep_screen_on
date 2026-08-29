@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'keep_screen_on'
-  s.version          = '6.0.0'
+  s.version          = '7.0.0'
   s.summary          = 'Keep screen on.'
   s.description      = <<-DESC
 This plugin disables automatic screen off and prevents the screen from turning off.

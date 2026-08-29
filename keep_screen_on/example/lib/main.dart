@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:keep_screen_on/keep_screen_on.dart';
 
@@ -252,8 +252,6 @@ class AppLifecycleStateHistory {
         return Colors.orange;
       case AppLifecycleState.paused:
         return Colors.indigo;
-      default:
-        return Colors.black;
-    }
+      }
   }
 }

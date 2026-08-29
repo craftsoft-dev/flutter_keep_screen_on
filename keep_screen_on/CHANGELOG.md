@@ -1,7 +1,7 @@
 ## 7.0.0
 
+- **Breaking change**. Updated minimum supported SDK version to Flutter 3.44/Dart 3.12.
 - Migrated to Built-in Kotlin to support AGP 9.
-- Updated minimum supported SDK version to Flutter 3.44/Dart 3.12.
 
 ## 6.0.0
 
